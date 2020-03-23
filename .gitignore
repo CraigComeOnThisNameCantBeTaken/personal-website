@@ -351,4 +351,5 @@ MigrationBackup/
 
 # Custom build ignores
 PersonalWebsite/wwwroot/**/*.js
+PersonalWebsite/wwwroot/**/*.js.map
 PersonalWebsite/wwwroot/**/*.css
