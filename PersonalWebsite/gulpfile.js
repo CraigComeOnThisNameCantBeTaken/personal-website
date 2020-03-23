@@ -11,7 +11,11 @@ requireDir('./gulp-tasks');
 
 gulp.task('clean', gulp.series('clean:typescript', 'clean:sass'));
 
-gulp.task('default', gulp.series('sass'));
+gulp.task('default:watch', function () {
+    gulp.watch(['wwwroot/styles/**/*.scss'], gulp.series('sass'));
+});
+
+gulp.task('default', gulp.series('sass', 'default:watch'));
 
 //gulp.task('default', ['scripts', 'sass'], function () {
 //    gulp.watch('src/js/**/*.js', ['scripts']);
