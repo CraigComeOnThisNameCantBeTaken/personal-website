@@ -5,29 +5,15 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 */
 
 var gulp = require("gulp");
-var del = require("del");
-var sass = require('gulp-sass');
-sass.compiler = require('node-sass');
+var requireDir = require('require-dir');
 
-var containingPaths = {
-    scripts: "./wwwroot/scripts/**/",
-    sass: "./wwwroot/styles/**/"
-};
+requireDir('./gulp-tasks');
 
-gulp.task("clean:scripts", function () {
-    return del([containingPaths.scripts + "*.js", containingPaths.scripts + "*.map"])
-});
-
-gulp.task("clean:sass", function () {
-    return del(containingPaths.sass + "*.css");
-});
-
-gulp.task('clean', gulp.series('clean:scripts', 'clean:sass'));
-
-gulp.task("sass", function () {
-    return gulp.src(containingPaths.sass + "*.scss")
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('wwwroot/styles'))
-});
+gulp.task('clean', gulp.series('clean:typescript', 'clean:sass'));
 
 gulp.task('default', gulp.series('sass'));
+
+//gulp.task('default', ['scripts', 'sass'], function () {
+//    gulp.watch('src/js/**/*.js', ['scripts']);
+//    gulp.watch('src/sass/**/*.{sass,scss}', ['sass']);
+//});

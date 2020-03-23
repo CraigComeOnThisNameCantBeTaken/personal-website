@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Custom build ignores
+PersonalWebsite/wwwroot/**/*.js
+PersonalWebsite/wwwroot/**/*.css
