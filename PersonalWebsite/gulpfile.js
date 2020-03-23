@@ -9,40 +9,25 @@ var del = require("del");
 var sass = require('gulp-sass');
 sass.compiler = require('node-sass');
 
-var paths = {
-    scripts: ["scripts/**/*.js", "scripts/**/*.ts", "scripts/**/*.map"],
-    sass: ["./wwwroot/styles/**/*.scss"]
+var containingPaths = {
+    scripts: "./wwwroot/scripts/**/",
+    sass: "./wwwroot/styles/**/"
 };
 
-
-
-
-
-
 gulp.task("clean:scripts", function () {
-    return del(["wwwroot/scripts/**/*.js"]);
+    return del([containingPaths.scripts + "*.js", containingPaths.scripts + "*.map"])
 });
 
 gulp.task("clean:sass", function () {
-    return del(["wwwroot/styles/**/*.css"]);
+    return del(containingPaths.sass + "*.css");
 });
 
 gulp.task('clean', gulp.series('clean:scripts', 'clean:sass'));
 
-
-
-
-
-
-
-gulp.task("scripts", async function () {
-    gulp.src(paths.scripts).pipe(gulp.dest("wwwroot/scripts"))
-});
-
 gulp.task("sass", function () {
-    return gulp.src(paths.sass)
+    return gulp.src(containingPaths.sass + "*.scss")
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('wwwroot/styles'))
 });
 
-gulp.task('default', gulp.series('scripts', 'sass'));
+gulp.task('default', gulp.series('sass'));
