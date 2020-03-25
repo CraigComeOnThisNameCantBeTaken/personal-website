@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
-using DataAccess.Repository;
 
 namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
 {
@@ -43,15 +40,9 @@ namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
             }
         }
 
-        public async Task CommitAsync(IRepository<object> repository)
+        public Task CommitAsync()
         {
-            await repository.CommitAsync();
-            this.transactionScope.Complete();
-        }
-
-        public async Task CommitAsync(IEnumerable<IRepository<object>> repositories)
-        {
-            await Task.WhenAll(repositories.Select(r => CommitAsync(r)));;
+            return Task.Run(() => this.transactionScope.Complete());
         }
     }
 }

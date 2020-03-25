@@ -15,7 +15,5 @@ namespace DataAccess.Repository
         Task DeleteAsync(T data);
 
         Task UpdateAsync(T data);
-
-        Task<int> CommitAsync();
     }
 }

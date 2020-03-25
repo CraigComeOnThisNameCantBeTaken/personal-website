@@ -30,21 +30,19 @@ namespace DataAccess.Repository.EntityFramework
         public async Task AddAsync(T data)
         {
             await DbSet.AddAsync(data);
+            await DataContext.SaveChangesAsync();
         }
 
         public Task UpdateAsync(T data)
         {
-            return Task.Run(() => DbSet.Update(data));
+            DbSet.Update(data);
+            return DataContext.SaveChangesAsync();
         }
 
         public Task DeleteAsync(T data)
         {
-            return Task.Run(() => DbSet.Remove(data));
-        }
-
-        public Task<int> CommitAsync()
-        {
-            return this.DataContext.SaveChangesAsync();
+            DbSet.Remove(data);
+            return DataContext.SaveChangesAsync();
         }
     }
 }
