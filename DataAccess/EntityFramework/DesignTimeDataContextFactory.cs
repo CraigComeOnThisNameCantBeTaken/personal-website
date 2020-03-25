@@ -17,7 +17,7 @@ namespace DataAccess.EntityFramework
         public DataContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<DataContext>();
-            builder.UseSqlServer("Server=localhost;Database=AspNetAuth;Trusted_Connection=True");
+            builder.UseSqlServer("Server=localhost;Database=PersonalWebsite;Trusted_Connection=True");
             return new DataContext(builder.Options);
         }
     }

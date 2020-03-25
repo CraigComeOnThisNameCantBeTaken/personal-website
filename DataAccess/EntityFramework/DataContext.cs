@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -13,6 +15,24 @@ namespace DataAccess.EntityFramework
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
+        }
+
+        public DbSet<Book> Books { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+
+        public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var EditedEntities = ChangeTracker.Entries()
+                .Where(E => E.State == EntityState.Modified)
+                .ToList();
+
+            EditedEntities.ForEach(E =>
+            {
+                E.Property(nameof(ValueEntity.UpdatedAt)).CurrentValue = DateTime.UtcNow;
+            });
+
+            return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,9 +64,7 @@ namespace DataAccess.EntityFramework
 
                 modelBuilder
                     .Entity(entityType.ClrType)
-                    .Property(nameof(ValueEntity.UpdatedAt))
-                    .HasDefaultValueSql("GETUTCDATE()")
-                    .ValueGeneratedOnUpdate();
+                    .Property(nameof(ValueEntity.UpdatedAt));
             }
         }
     }
