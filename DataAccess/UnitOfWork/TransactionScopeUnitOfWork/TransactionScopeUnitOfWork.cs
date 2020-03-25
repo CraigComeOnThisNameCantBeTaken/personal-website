@@ -18,7 +18,8 @@ namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
                     {
                         IsolationLevel = IsolationLevel.ReadCommitted,
                         Timeout = TransactionManager.MaximumTimeout
-                    });
+                    },
+                    TransactionScopeAsyncFlowOption.Enabled);
         }
 
         public void Dispose()

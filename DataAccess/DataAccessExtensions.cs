@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using DataAccess.Repository;
 using DataAccess.Repository.EntityFramework;
+using DataAccess.UnitOfWork;
+using DataAccess.UnitOfWork.TransactionScopeUnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,6 +31,7 @@ namespace DataAccess
             // although the intension is concrete repository instead of generic
             // this is still getting registered because in simple cases we may only need the basic methods
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            serviceCollection.AddSingleton<IScopedUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
 
             return serviceCollection;
         }
