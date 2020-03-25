@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataAccess
+namespace DataAccess.Repository
 {
     public interface IRepository<T> where T : class
     {
@@ -10,11 +10,11 @@ namespace DataAccess
 
         Task<T> GetByIdAsync(Guid id);
 
-        void Add(T data);
+        Task AddAsync(T data);
 
-        void Delete(T data);
+        Task DeleteAsync(T data);
 
-        void Update(T data);
+        Task UpdateAsync(T data);
 
         Task<int> CommitAsync();
     }

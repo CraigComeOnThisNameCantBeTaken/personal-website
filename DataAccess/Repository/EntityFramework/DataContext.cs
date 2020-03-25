@@ -8,7 +8,7 @@ using DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
-namespace DataAccess.EntityFramework
+namespace DataAccess.Repository.EntityFramework
 {
     internal class DataContext : DbContext
     {

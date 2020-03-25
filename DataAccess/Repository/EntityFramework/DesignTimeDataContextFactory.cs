@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 // Used to run migrations
-namespace DataAccess.EntityFramework
+namespace DataAccess.Repository.EntityFramework
 {
     internal class DesignTimeDataContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
