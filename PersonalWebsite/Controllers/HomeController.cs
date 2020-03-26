@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using DataAccess.Repository;
 using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using PersonalWebsite.Models;
 
 namespace PersonalWebsite.Controllers
