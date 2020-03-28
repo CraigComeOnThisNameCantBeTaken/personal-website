@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataAccess.Repository
+namespace DataAccess
 {
     public interface IRepository<T>
     {

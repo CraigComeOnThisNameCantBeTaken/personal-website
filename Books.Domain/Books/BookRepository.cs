@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Repository;
-using DataAccess.Repository.EntityFramework;
+using DataAccess;
+using DataAccess.EntityFramework;
 using Microsoft.EntityFrameworkCore;
-using DbEntities = DataAccess.Entities;
 
 namespace Books.Domain.Books
 {
@@ -20,13 +19,13 @@ namespace Books.Domain.Books
 
         public async Task AddAsync(Book data)
         {
-            await dataContext.Books.AddAsync(ConvertToUpsertableModel(data));
+            await dataContext.Books.AddAsync(data.ToUpsertable());
             await dataContext.SaveChangesAsync();
         }
 
         public async Task AddRangeAsync(IEnumerable<Book> data)
         {
-            var insertable = data.Select(b => ConvertToUpsertableModel(b));
+            var insertable = data.Select(b => b.ToUpsertable());
             await dataContext.Books.AddRangeAsync(insertable);
             await dataContext.SaveChangesAsync();
         }
@@ -77,22 +76,6 @@ namespace Books.Domain.Books
             var updatable = data.Select(d => d.ToUpsertable());
             dataContext.UpdateRange(updatable);
             await dataContext.SaveChangesAsync();
-        }
-
-        private DbEntities.Book ConvertToUpsertableModel(Book data)
-        {
-            return new DbEntities.Book
-            {
-                Id = data.Id,
-                Name = data.Name,
-                PurchaseLink = data.PurchaseLink,
-                Review = new DbEntities.Review
-                {
-                    LearningRating = data.Review.LearningRating,
-                    ReadabilityRating = data.Review.ReadabilityRating,
-                    Text = data.Review.Text
-                }
-            };
         }
     }
 }

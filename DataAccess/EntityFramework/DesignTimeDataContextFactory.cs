@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 // Used to run migrations
-namespace DataAccess.Repository.EntityFramework
+namespace DataAccess.EntityFramework
 {
     internal class DesignTimeDataContextFactory : IDesignTimeDbContextFactory<DataContext>
     {
