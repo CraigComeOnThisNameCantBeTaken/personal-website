@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using DataAccess.Entities;
-using DataAccess.Repository;
+using DataAccess.Repositories;
 using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using PersonalWebsite.Models;

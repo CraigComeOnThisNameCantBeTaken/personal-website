@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DataAccess.Repository;
+using DataAccess.Repositories;
 
 namespace DataAccess.UnitOfWork
 {
