@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DataAccess.Repository
+namespace DataAccess.Repositories
 {
-    public interface IRepository<T> where T : class
+    public interface IRepository<T>
     {
-        Task<IEnumerable<T>> GetAsync();
+        Task<IEnumerable<Summary>> GetAsync();
+
+        Task<Summary> GetSummaryByIdAsync(Guid id);
 
         Task<T> GetByIdAsync(Guid id);
 

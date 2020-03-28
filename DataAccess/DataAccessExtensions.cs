@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DataAccess.Repository;
-using DataAccess.Repository.EntityFramework;
+using DataAccess.EntityFramework;
+using DataAccess.Repositories;
 using DataAccess.UnitOfWork;
 using DataAccess.UnitOfWork.TransactionScopeUnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +29,7 @@ namespace DataAccess
             });
 
             serviceCollection.AddSingleton<IScopedUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
+            serviceCollection.AddSingleton<BookRepository>();
 
             return serviceCollection;
         }
