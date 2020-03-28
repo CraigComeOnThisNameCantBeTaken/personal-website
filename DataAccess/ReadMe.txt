@@ -11,6 +11,6 @@ The entities have been kept clean of any EF related attributes in order to keep 
 of any implementation details. Instead the fluent API has been used.
 
 You may note that there is no default implementation of IRepository - this is because the repositories should be based on
-domain model aggregate roots and with that in mind we cannot know what an Add would do, or what data it would persist.
+entity model aggregate roots and with that in mind we cannot know what an Add would do, or what data it would persist.
 This is another reason the generic repository pattern was not chosen. There is however an interface of several general methods
 to implement which I feel would save time and improve consistency in the long run.

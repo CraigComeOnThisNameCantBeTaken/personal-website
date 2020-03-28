@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
+using DataAccess.Entities;
 using DataAccess.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
-namespace Books.Domain.Books
+namespace DataAccess.Repositories
 {
     public class BookRepository : IRepository<Book>
     {
@@ -19,21 +20,20 @@ namespace Books.Domain.Books
 
         public async Task AddAsync(Book data)
         {
-            await dataContext.Books.AddAsync(data.ToUpsertable());
+            await dataContext.Books.AddAsync(data);
             await dataContext.SaveChangesAsync();
         }
 
         public async Task AddRangeAsync(IEnumerable<Book> data)
         {
-            var insertable = data.Select(b => b.ToUpsertable());
-            await dataContext.Books.AddRangeAsync(insertable);
+            await dataContext.Books.AddRangeAsync(data);
             await dataContext.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Book data)
         {
             var record = await dataContext.Books.FindAsync(data.Id);
-            if(record == null)
+            if (record == null)
             {
                 throw new ArgumentException($"Cannot find book to delete with id {data.Id}");
             }
@@ -44,38 +44,48 @@ namespace Books.Domain.Books
 
         public async Task DeleteRangeAsync(IEnumerable<Book> data)
         {
-            var records = await dataContext.Books
-                .Where(b => data.Any(d => d.Id == b.Id))
-                .ToListAsync();
-            dataContext.Books.RemoveRange(records);
+            dataContext.Books.RemoveRange(data);
             await dataContext.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Book>> GetAsync()
-        {
-            return await dataContext.Books
-                .Select(db => db.ToDomain())
-                .ToListAsync();
         }
 
         public async Task<Book> GetByIdAsync(Guid id)
         {
             var data = await dataContext.Books.FindAsync(id);
-            return data?.ToDomain();
+            return data;
         }
 
         public async Task UpdateAsync(Book data)
         {
-            var toUpdate = data.ToUpsertable();
-            dataContext.Update(toUpdate);
+            dataContext.Update(data);
             await dataContext.SaveChangesAsync();
         }
 
         public async Task UpdateRangeAsync(IEnumerable<Book> data)
         {
-            var updatable = data.Select(d => d.ToUpsertable());
-            dataContext.UpdateRange(updatable);
+            dataContext.UpdateRange(data);
             await dataContext.SaveChangesAsync();
+        }
+
+        public virtual async Task<IEnumerable<Summary>> GetAsync()
+        {
+            return await dataContext.Books
+                .Select(b => new Summary
+                {
+                    Id = b.Id,
+                    Name = b.Name
+                })
+                .ToListAsync();
+        }
+
+        public virtual async Task<Summary> GetSummaryByIdAsync(Guid id)
+        {
+            return await dataContext.Books
+                .Select(b => new Summary
+                {
+                    Id = b.Id,
+                    Name = b.Name
+                })
+                .FirstOrDefaultAsync(b => b.Id == id);
         }
     }
 }
