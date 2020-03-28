@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Transactions;
+using Microsoft.Extensions.Logging;
 
 namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
 {
@@ -9,8 +10,9 @@ namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
         private bool disposed = false;
 
         private readonly TransactionScope transactionScope;
+        private readonly ILogger<TransactionScopeUnitOfWork> logger;
 
-        public TransactionScopeUnitOfWork()
+        public TransactionScopeUnitOfWork(ILogger<TransactionScopeUnitOfWork> logger)
         {
             this.transactionScope = new TransactionScope(
                     TransactionScopeOption.RequiresNew,
@@ -20,6 +22,7 @@ namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
                         Timeout = TransactionManager.MaximumTimeout
                     },
                     TransactionScopeAsyncFlowOption.Enabled);
+            this.logger = logger;
         }
 
         public void Dispose()
@@ -43,7 +46,19 @@ namespace DataAccess.UnitOfWork.TransactionScopeUnitOfWork
 
         public Task CommitAsync()
         {
-            return Task.Run(() => this.transactionScope.Complete());
+            return Task.Run(() =>
+            {
+                try
+                {
+                    this.transactionScope.Complete();
+                    logger.LogDebug("Transaction completed");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogCritical(ex, "Unit of work failed to commit");
+                    throw;
+                }
+            });
         }
     }
 }

@@ -28,9 +28,6 @@ namespace DataAccess
                 options.UseSqlServer(contextOptions.ConnectionString);
             });
 
-            // although the intension is concrete repository instead of generic
-            // this is still getting registered because in simple cases we may only need the basic methods
-            serviceCollection.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             serviceCollection.AddSingleton<IScopedUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
 
             return serviceCollection;

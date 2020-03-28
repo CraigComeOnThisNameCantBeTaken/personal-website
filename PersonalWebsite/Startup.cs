@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace PersonalWebsite
 {
@@ -25,7 +26,7 @@ namespace PersonalWebsite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDataAccess(new DataAccessOptions {
-                ConnectionString = Configuration["DatabaseConnection"]
+                ConnectionString = Configuration["ConnectionStrings:Main"]
             });
 
             services.AddControllersWithViews();
@@ -45,7 +46,12 @@ namespace PersonalWebsite
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
+
+            // Microsoft and System are set to log warnings or above but requests are informational
+            // so add middleware to log requests
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
