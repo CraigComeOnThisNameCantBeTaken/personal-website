@@ -11,34 +11,29 @@ namespace PersonalWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<Book> repo;
-        private readonly IScopedUnitOfWorkFactory unitOfWorkFactory;
-
-        public HomeController(IRepository<Book> repo, IScopedUnitOfWorkFactory unitOfWorkFactory)
+        public HomeController()
         {
-            this.repo = repo;
-            this.unitOfWorkFactory = unitOfWorkFactory;
         }
 
         public async Task<IActionResult> Index()
         {
-            using (var unit = unitOfWorkFactory.Create())
-            {
-                var book = new Book
-                {
-                    Name = "a book",
-                    PurchaseLink = "a purchase link",
-                    Review = new Review
-                    {
-                        LearningRating = 2,
-                        ReadabilityRating = 3,
-                        Text = "it was ok"
-                    }
-                };
-                await repo.AddAsync(book);
-                var read = await repo.GetAsync();
-                await unit.CommitAsync();
-            }
+            //using (var unit = unitOfWorkFactory.Create())
+            //{
+            //    var book = new Book
+            //    {
+            //        Name = "a book",
+            //        PurchaseLink = "a purchase link",
+            //        Review = new Review
+            //        {
+            //            LearningRating = 2,
+            //            ReadabilityRating = 3,
+            //            Text = "it was ok"
+            //        }
+            //    };
+            //    await repo.AddAsync(book);
+            //    var read = await repo.GetAsync();
+            //    await unit.CommitAsync();
+            //}
 
             return View();
         }

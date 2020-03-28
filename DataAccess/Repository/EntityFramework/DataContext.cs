@@ -10,7 +10,7 @@ using Microsoft.Extensions.Options;
 
 namespace DataAccess.Repository.EntityFramework
 {
-    internal class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
