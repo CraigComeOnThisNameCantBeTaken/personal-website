@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Books.Domain\Books.Domain.csproj" />
+    <ProjectReference Include="..\Books.Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
