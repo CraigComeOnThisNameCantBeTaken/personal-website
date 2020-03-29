@@ -8,8 +8,6 @@ namespace DataAccess.Entities
 {
     public class GitRepo : ValueEntity
     {
-        public string Name { get; set; }
-
         public string Description { get; set; }
 
         public string Url { get; set; }

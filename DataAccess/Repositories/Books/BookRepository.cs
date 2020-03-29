@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess.Entities;
+﻿using DataAccess.Entities;
 using DataAccess.EntityFramework;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace DataAccess.Repositories
+namespace DataAccess.Repositories.Books
 {
     public class BookRepository : EfCoreRepository<Book, BookRepository>, IBookRepository
     {

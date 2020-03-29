@@ -103,7 +103,7 @@ namespace DataAccess.Tests.Repositories
             await Sut.AddRangeAsync(newEntities);
 
             var ids = string.Join(", ", newEntities.Select(d => d.Id.ToString()));
-            string message = $@"Added muliple new books with ids: {ids}";
+            string message = $@"Added muliple new {typeof(TEntity).Name}s with ids: {ids}";
             MockLogger.VerifyLog(LogLevel.Information, message, Times.Once());
         }
 
@@ -121,7 +121,7 @@ namespace DataAccess.Tests.Repositories
             catch
             {
                 string ids = string.Join(", ", insertable.Select(d => d.Id.ToString()));
-                string message = $@"Failed to add new Books with ids: {ids}";
+                string message = $@"Failed to add new {typeof(TEntity).Name}s with ids: {ids}";
                 MockLogger.VerifyLog(LogLevel.Error, message, Times.Once());
             }
         }

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Books.Domain.Books;
 using DataAccess;
-using DataAccess.Repositories;
+using DataAccess.Repositories.Books;
 
 namespace Domain.Books
 {
     public class BookService
     {
-        private readonly BookRepository bookRepository;
+        private readonly IBookRepository bookRepository;
 
-        public BookService(BookRepository bookRepository)
+        public BookService(IBookRepository bookRepository)
         {
             this.bookRepository = bookRepository;
         }

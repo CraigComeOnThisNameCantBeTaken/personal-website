@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using DataAccess.EntityFramework;
 using DataAccess.Repositories;
+using DataAccess.Repositories.Books;
+using DataAccess.Repositories.GitRepos;
 using DataAccess.UnitOfWork;
 using DataAccess.UnitOfWork.TransactionScopeUnitOfWork;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +32,7 @@ namespace DataAccess
 
             serviceCollection.AddSingleton<IScopedUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
             serviceCollection.AddSingleton<IBookRepository, BookRepository>();
+            serviceCollection.AddSingleton<IGitRepoRepository, GitRepoRepository>();
 
             return serviceCollection;
         }
