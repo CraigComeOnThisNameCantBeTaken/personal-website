@@ -29,7 +29,7 @@ namespace DataAccess
             });
 
             serviceCollection.AddSingleton<IScopedUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
-            serviceCollection.AddSingleton<BookRepository>();
+            serviceCollection.AddSingleton<IBookRepository, BookRepository>();
 
             return serviceCollection;
         }
