@@ -18,6 +18,10 @@ namespace DataAccess.EntityFramework
 
         public DbSet<Review> Reviews { get; set; }
 
+        public DbSet<GitRepo> GitRepos { get; set; }
+
+        public DbSet<GitCommit> GitCommits { get; set; }
+
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
         {
             var EditedEntities = ChangeTracker.Entries()
@@ -38,6 +42,8 @@ namespace DataAccess.EntityFramework
 
             modelBuilder.ApplyConfiguration(new BookConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
+            modelBuilder.ApplyConfiguration(new GitRepoConfiguration());
+            modelBuilder.ApplyConfiguration(new GitCommitConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
