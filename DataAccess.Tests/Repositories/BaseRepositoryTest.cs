@@ -157,7 +157,7 @@ namespace DataAccess.Tests.Repositories
             var inserted = Database.AddData(newEntity);
 
             await Sut.DeleteAsync(inserted);
-            var message = $"Deleted Book with id: {inserted.Id}";
+            var message = $"Deleted {typeof(TEntity).Name} with id: {inserted.Id}";
             MockLogger.VerifyLog(LogLevel.Information, message, Times.Once());
         }
 
@@ -173,7 +173,7 @@ namespace DataAccess.Tests.Repositories
             }
             catch
             {
-                string message = $"Attempt to delete a book failed for id: {newEntity.Id}";
+                string message = $"Attempt to delete a {typeof(TEntity).Name} failed for id: {newEntity.Id}";
                 MockLogger.VerifyLog(LogLevel.Error, message, Times.Once());
             }
         }
@@ -208,7 +208,7 @@ namespace DataAccess.Tests.Repositories
             }
             catch
             {
-                string message = $"Attempt to update a book failed for id: {entity.Id}";
+                string message = $"Attempt to update a {typeof(TEntity).Name} failed for id: {entity.Id}";
                 MockLogger.VerifyLog(LogLevel.Error, message, Times.Once());
             }
         }
