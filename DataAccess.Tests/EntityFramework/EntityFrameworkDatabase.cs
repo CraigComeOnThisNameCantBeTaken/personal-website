@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DataAccess.EntityFramework;
 using Microsoft.EntityFrameworkCore;
@@ -19,31 +20,45 @@ namespace DataAccess.Tests.EntityFramework
             dataContext = new DataContext(dbOptions);
         }
 
-        public void AddData(IEnumerable<T> data)
+        public IEnumerable<T> AddData(IEnumerable<T> data)
         {
-            var dbSet = dataContext.Set<T>();
-            dbSet.AddRange(data);
+            var list = new List<T>();
+            foreach (var ele in data)
+            {
+                list.Add(AddData(ele));
+            }
+
+            return list;
         }
 
-        public void AddData(T data)
+        public T AddData(T data)
         {
             var dbSet = dataContext.Set<T>();
             dbSet.Add(data);
+            Commit();
+
+            return data;
         }
 
-        public void UpdateData(T data)
+        public T UpdateData(T data)
         {
             var dbSet = dataContext.Set<T>();
             dbSet.Update(data);
+            Commit();
+
+            return data;
         }
 
-        public void UpdateData(IEnumerable<T> data)
+        public IEnumerable<T> UpdateData(IEnumerable<T> data)
         {
             var dbSet = dataContext.Set<T>();
             dbSet.UpdateRange(data);
+            Commit();
+
+            return data;
         }
 
-        public void Commit()
+        private void Commit()
         {
             dataContext.SaveChanges();
         }
