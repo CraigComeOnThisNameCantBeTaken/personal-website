@@ -30,7 +30,7 @@ namespace DataAccess.Repositories
                 await dataContext.SaveChangesAsync();
                 logger.LogInformation("Added new Book with id: {ID}", data.Id);
             }
-            catch(ArgumentException)
+            catch
             {
                 logger.LogError("Failed to add new Book with id: {ID}", data.Id);
                 throw;
@@ -68,7 +68,7 @@ namespace DataAccess.Repositories
             }
             catch(DbUpdateConcurrencyException ex)
             {
-                logger.LogError("Attempt to delete a book failed for {ID}", data.Id);
+                logger.LogError("Attempt to delete a book failed for id: {ID}", data.Id);
                 throw new ArgumentException(ex.Message);
             }
         }
@@ -108,7 +108,7 @@ namespace DataAccess.Repositories
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                logger.LogError("Attempt to update a book failed for {ID}", data.Id);
+                logger.LogError("Attempt to update a book failed for id: {ID}", data.Id);
                 throw new ArgumentException(ex.Message);
             }
         }
@@ -122,7 +122,7 @@ namespace DataAccess.Repositories
             );
         }
 
-        public virtual async Task<IEnumerable<Summary>> GetAsync()
+        public async Task<IEnumerable<Summary>> GetAsync()
         {
             return await dataContext.Books
                 .Select(b => new Summary
@@ -133,7 +133,7 @@ namespace DataAccess.Repositories
                 .ToListAsync();
         }
 
-        public virtual async Task<Summary> GetSummaryByIdAsync(Guid id)
+        public async Task<Summary> GetSummaryByIdAsync(Guid id)
         {
             return await dataContext.Books
                 .Select(b => new Summary
