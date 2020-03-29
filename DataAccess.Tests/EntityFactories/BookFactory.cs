@@ -5,7 +5,7 @@ using DataAccess.Entities;
 
 namespace DataAccess.Tests.EntityFactories
 {
-    public class BookFactory
+    public class BookFactory : IEntityFactory<Book>
     {
         public Book Create()
         {
