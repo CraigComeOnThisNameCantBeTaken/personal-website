@@ -16,7 +16,7 @@ namespace DataAccess.Tests.Repositories
     public class BookRepositoryTest : BaseRepositoryTest<Book, BookRepository>
     {
         private readonly IDatabase<Book> _database;
-        private readonly IRepository<Book> _sut;
+        private readonly IBookRepository _sut;
         private readonly IEntityFactory<Book> _entityFactory;
         private readonly Mock<ILogger<BookRepository>> _mockLogger;
 
