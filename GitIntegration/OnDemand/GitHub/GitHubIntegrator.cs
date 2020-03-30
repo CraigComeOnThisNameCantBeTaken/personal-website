@@ -5,7 +5,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
-using GitIntegration.GitHub.Responses;
+using GitIntegration.OnDemand;
+using GitIntegration.OnDemand.GitHub.Responses;
 using GitIntegration.Resolvers;
 using Newtonsoft.Json;
 

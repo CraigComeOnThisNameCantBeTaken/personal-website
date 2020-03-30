@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
 using GitIntegration.GitHub;
+using GitIntegration.OnDemand;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GitIntegration.Resolvers

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="GitHub\Responses\f43vc3pv.uxk~" />
+    <None Remove="OnDemand\GitHub\Responses\f43vc3pv.uxk~" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +15,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Webhooks\" />
   </ItemGroup>
 
 </Project>

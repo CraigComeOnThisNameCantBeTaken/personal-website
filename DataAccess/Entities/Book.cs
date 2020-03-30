@@ -5,7 +5,6 @@ namespace DataAccess.Entities
 {
     public class Book : ValueEntity
     {
-        public string Name { get; set; }
         public string PurchaseLink { get; set; }
         public virtual Review Review { get; set; }
     }
