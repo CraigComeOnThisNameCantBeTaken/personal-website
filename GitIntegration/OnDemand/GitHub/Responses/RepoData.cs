@@ -2,7 +2,7 @@
 
 namespace GitIntegration.OnDemand.GitHub.Responses
 {
-    public class RepoData
+    internal class RepoData
     {
         public string Name { get; set; }
 

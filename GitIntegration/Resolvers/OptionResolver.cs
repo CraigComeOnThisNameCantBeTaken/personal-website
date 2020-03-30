@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace GitIntegration.Resolvers
 {
-    public class OptionResolver
+    internal class OptionResolver
     {
         private readonly IOptionsSnapshot<GitIntegrationOption> options;
 

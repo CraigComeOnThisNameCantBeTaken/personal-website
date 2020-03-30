@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 
 namespace GitIntegration.GitHub
 {
-    public class GitHubIntegrator : IGitIntegrator
+    internal class GitHubIntegrator : IGitIntegrator
     {
         private readonly GitIntegrationOption option;
         private readonly HttpClient client = new HttpClient();

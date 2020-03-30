@@ -6,7 +6,7 @@ using System.Text;
 
 namespace GitIntegration
 {
-    public static class SupportedIntegrations
+    internal static class SupportedIntegrations
     {
         public const string GitHub = nameof(GitHub);
 
