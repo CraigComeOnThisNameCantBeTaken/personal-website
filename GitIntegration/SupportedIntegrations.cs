@@ -11,7 +11,7 @@ namespace GitIntegration
         public const string GitHub = nameof(GitHub);
 
         public static readonly IEnumerable<string> List = new List<string>{
-                GitHub
-            };
+            GitHub
+        };
     }
 }

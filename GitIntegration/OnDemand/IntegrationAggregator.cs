@@ -8,7 +8,7 @@ using GitIntegration.Resolvers;
 
 namespace GitIntegration.OnDemand
 {
-    public class IntegrationAggregator
+    public class IntegrationAggregator : IGitIntegrator
     {
         private readonly IEnumerable<string> supportedIntegrations;
         private readonly IntegratorResolver integrationResolver;

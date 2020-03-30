@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitIntegration", "GitIntegration\GitIntegration.csproj", "{4FD96A2C-52D2-4486-8967-164DF80C4170}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitIntegration.Test", "GitIntegration.Test\GitIntegration.Test.csproj", "{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

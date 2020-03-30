@@ -15,6 +15,7 @@ namespace GitIntegration.Resolvers
         {
             this.options = options;
         }
+
         public GitIntegrationOption Resolve(string provider)
         {
             var option = options.Get(provider);

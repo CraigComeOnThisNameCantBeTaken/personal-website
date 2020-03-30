@@ -29,8 +29,9 @@ namespace GitIntegration
 
             serviceCollection.AddSingleton<OptionResolver>();
             serviceCollection.AddSingleton<IntegratorResolver>();
-            serviceCollection.AddSingleton<IntegrationAggregator>();
+
             serviceCollection.AddSingleton<IGitIntegrator, GitHubIntegrator>();
+            serviceCollection.AddSingleton<IntegrationAggregator>();
 
             return serviceCollection;
         }
