@@ -10,3 +10,8 @@ https://api.github.com/repos/CraigComeOnThisNameCantBeTaken/personal-website/com
 
 Please note the rate limit is 5000 vs 60 requests per hour based on authentication, however
 this project will not need to make even close to 60 and so the authentication complexity has been skipped.
+
+
+
+The on demand aspects of this project are intended to be used for creating a fresh persistance store, or
+for resychronising. As such the on demand aspects should be secured to only be run by an admin.

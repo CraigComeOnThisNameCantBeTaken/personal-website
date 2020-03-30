@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GitIntegration.GitHub.Responses
+namespace GitIntegration.OnDemand.GitHub.Responses
 {
     public class RepoData
     {

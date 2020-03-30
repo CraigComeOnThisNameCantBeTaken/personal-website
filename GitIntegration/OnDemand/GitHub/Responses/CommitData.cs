@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GitIntegration.GitHub.Responses
+﻿namespace GitIntegration.OnDemand.GitHub.Responses
 {
     public class CommitBody
     {

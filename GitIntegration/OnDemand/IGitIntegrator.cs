@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 
-namespace GitIntegration
+namespace GitIntegration.OnDemand
 {
     public interface IGitIntegrator
     {

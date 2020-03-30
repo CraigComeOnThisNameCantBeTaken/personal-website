@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DataAccess.Entities;
 using GitIntegration.Resolvers;
 
-namespace GitIntegration
+namespace GitIntegration.OnDemand
 {
     public class IntegrationAggregator
     {
