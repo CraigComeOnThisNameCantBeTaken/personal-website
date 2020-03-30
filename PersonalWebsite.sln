@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "PersonalWebsite\W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{4F62C9E9-4539-420E-9635-5A2821B0CC3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests", "DataAccess.Tests\DataAccess.Tests.csproj", "{CF99E1FA-573B-4AB4-97BA-4497C4F6987A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Tests", "DataAccess.Tests\DataAccess.Tests.csproj", "{CF99E1FA-573B-4AB4-97BA-4497C4F6987A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{A8803915-F29F-476B-AA6B-3A19E416061F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{A8803915-F29F-476B-AA6B-3A19E416061F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitIntegration", "GitIntegration\GitIntegration.csproj", "{4FD96A2C-52D2-4486-8967-164DF80C4170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A8803915-F29F-476B-AA6B-3A19E416061F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8803915-F29F-476B-AA6B-3A19E416061F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8803915-F29F-476B-AA6B-3A19E416061F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD96A2C-52D2-4486-8967-164DF80C4170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -43,8 +43,7 @@ namespace DataAccess.Tests.Repositories
             toUpdate.Url = "a new url";
             toUpdate.Commits.Add(new GitCommit
             {
-                Title = "a title",
-                Description = "a description",
+                Message = "a message",
                 Sha = "a sha code"
             });
 

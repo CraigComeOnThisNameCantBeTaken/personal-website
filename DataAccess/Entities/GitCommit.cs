@@ -8,9 +8,7 @@ namespace DataAccess.Entities
 {
     public class GitCommit : ValueEntity
     {
-        public string Title { get; set; }
-
-        public string Description { get; set; }
+        public string Message { get; set; }
 
         public string Sha { get; set; }
 
@@ -23,12 +21,7 @@ namespace DataAccess.Entities
         public void Configure(EntityTypeBuilder<GitCommit> builder)
         {
             builder
-                .Property(b => b.Title)
-                .HasMaxLength(50)
-                .IsRequired();
-
-            builder
-             .Property(b => b.Description)
+             .Property(b => b.Message)
              .HasMaxLength(200)
              .IsRequired();
 

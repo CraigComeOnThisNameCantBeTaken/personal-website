@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\GitIntegration\GitIntegration.csproj" />
   </ItemGroup>
 
   <ItemGroup>

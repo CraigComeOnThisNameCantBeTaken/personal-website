@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
+using GitIntegration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,8 @@ namespace PersonalWebsite
             services.AddDataAccess(new DataAccessOptions {
                 ConnectionString = Configuration["ConnectionStrings:Main"]
             });
+
+            services.AddGitIntegration(Configuration.GetSection("GitIntegrations"));
 
             services.AddControllersWithViews();
         }
