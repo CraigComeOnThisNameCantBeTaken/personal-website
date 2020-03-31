@@ -30,11 +30,17 @@ namespace GitIntegration
 
             // resolvers for internal work
             serviceCollection.AddSingleton<IOptionResolver, OptionResolver>();
-            serviceCollection.AddSingleton<IntegratorResolver>();
 
             // git provider integration services
-            serviceCollection.AddSingleton<IGitIntegrator, GitHubIntegrator>();
-            serviceCollection.AddSingleton<IGitIntegrator, IntegrationAggregator>();
+            serviceCollection.AddSingleton<GitHubIntegrator>();
+            serviceCollection.AddSingleton<IGitIntegrator>(c =>
+                new IntegrationAggregator(
+                    new IGitIntegrator[]
+                    {
+                        c.GetRequiredService<GitHubIntegrator>()
+                    }
+                )
+            );
 
             // service for use external to the project
             serviceCollection.AddSingleton<IGitIntegrationService, GitIntegrationService>();

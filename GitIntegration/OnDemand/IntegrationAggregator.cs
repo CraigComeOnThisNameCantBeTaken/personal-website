@@ -10,29 +10,20 @@ namespace GitIntegration.OnDemand
 {
     internal class IntegrationAggregator : IGitIntegrator
     {
-        private readonly IntegratorResolver integrationResolver;
+        private readonly IEnumerable<IGitIntegrator> integrators;
 
-        public IntegrationAggregator(IntegratorResolver integrationResolver)
+        public IntegrationAggregator(IEnumerable<IGitIntegrator> _integrators)
         {
-            this.integrationResolver = integrationResolver;
+            integrators = _integrators;
         }
 
         public async Task<IEnumerable<GitRepo>> GetReposAsync()
         {
-            var type = typeof(IGitIntegrator);
-            var types = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(s => s.GetTypes())
-                .Where(p => type.IsAssignableFrom(p))
-                .Where(p => p != typeof(IntegrationAggregator));
-
-            var services = types
-                .Select(type => integrationResolver.Resolve(type));
-
             var data = new List<GitRepo>();
-            foreach (var service in services)
+            foreach (var integrator in integrators)
             {
-                var repos = await service.GetReposAsync();
-                data.AddRange(repos);
+                var repoData = await integrator.GetReposAsync();
+                data.AddRange(repoData);
             }
 
             return data;

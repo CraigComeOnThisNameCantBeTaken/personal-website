@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using GitIntegration.OnDemand;
-using GitIntegration.Resolvers;
 
 namespace GitIntegration.Public
 {
@@ -11,9 +10,9 @@ namespace GitIntegration.Public
     {
         private readonly IGitIntegrator dataProvider;
 
-        public GitIntegrationService(IntegratorResolver resolver)
+        public GitIntegrationService(IGitIntegrator dataProvider)
         {
-            this.dataProvider = resolver.Resolve();
+            this.dataProvider = dataProvider;
         }
 
         public Task<IEnumerable<GitRepo>> GetGitRepoDataAsync()

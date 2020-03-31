@@ -18,11 +18,7 @@ namespace GitIntegration.Tests
         public GitIntegrationServiceTest()
         {
             dataProvider = new Mock<IGitIntegrator>();
-            var serviceCollection = new ServiceCollection();
-            var aggregator = (IntegrationAggregator)dataProvider.Object;
-            serviceCollection.AddSingleton<IntegrationAggregator>(aggregator);
-            var resolver = new IntegratorResolver(serviceCollection.BuildServiceProvider());
-            sut = new GitIntegrationService(resolver);
+            sut = new GitIntegrationService(dataProvider.Object);
         }
 
         [Fact]
