@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using GitIntegration.OnDemand;
@@ -15,20 +14,24 @@ namespace GitIntegration.GitHub
     internal class GitHubIntegrator : IGitIntegrator
     {
         private readonly GitIntegrationOption option;
-        private readonly HttpClient client = new HttpClient();
+        private readonly HttpClient client;
 
-        public GitHubIntegrator(OptionResolver optionResolver)
+        public GitHubIntegrator(
+            HttpClient httpClient,
+            IOptionResolver optionResolver)
         {
+            client = httpClient;
             option = optionResolver.Resolve(SupportedIntegrations.GitHub);
         }
 
         public async Task<IEnumerable<GitRepo>> GetReposAsync()
         {
-            var repos = await GetBasicRepoDataAsync();
+            var repos = (await GetBasicRepoDataAsync()).ToList();
 
             foreach (var repo in repos)
             {
-                await EnrichRepoWithCommitsAsync(repo);
+                var commitData = await EnrichRepoWithCommitsAsync(repo);
+                repo.Commits = commitData;
             }
 
             return repos;
@@ -48,12 +51,14 @@ namespace GitIntegration.GitHub
             {
                 Description = data.Description,
                 Url = data.HtmlUrl,
+                Name = data.Name,
                 Commits = new List<GitCommit>()
             });
         }
 
-        private async Task EnrichRepoWithCommitsAsync(GitRepo repo)
+        private async Task<ICollection<GitCommit>> EnrichRepoWithCommitsAsync(GitRepo repo)
         {
+            var url = $"{option.Endpoint}/repos/{option.UserName}/{repo.Name}/commits";
             var response = await client
                 .GetAsync($"{option.Endpoint}/repos/{option.UserName}/{repo.Name}/commits");
             if (!response.IsSuccessStatusCode)
@@ -63,7 +68,7 @@ namespace GitIntegration.GitHub
 
             var body = await response.Content.ReadAsStringAsync();
             var commitData = JsonConvert.DeserializeObject<IEnumerable<CommitData>>(body);
-            repo.Commits = commitData
+            return commitData
                 .Select(data => new GitCommit
                 {
                     Message = data.Commit.Message,

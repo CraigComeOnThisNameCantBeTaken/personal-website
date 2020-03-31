@@ -8,21 +8,25 @@ using GitIntegration.Resolvers;
 
 namespace GitIntegration.OnDemand
 {
-    public class IntegrationAggregator : IGitIntegrator
+    internal class IntegrationAggregator : IGitIntegrator
     {
-        private readonly IEnumerable<string> supportedIntegrations;
         private readonly IntegratorResolver integrationResolver;
 
         public IntegrationAggregator(IntegratorResolver integrationResolver)
         {
-            this.supportedIntegrations = SupportedIntegrations.List;
             this.integrationResolver = integrationResolver;
         }
 
         public async Task<IEnumerable<GitRepo>> GetReposAsync()
         {
-            var services = supportedIntegrations
-                .Select(providerName => integrationResolver.Resolve(providerName));
+            var type = typeof(IGitIntegrator);
+            var types = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => type.IsAssignableFrom(p))
+                .Where(p => p != typeof(IntegrationAggregator));
+
+            var services = types
+                .Select(type => integrationResolver.Resolve(type));
 
             var data = new List<GitRepo>();
             foreach (var service in services)

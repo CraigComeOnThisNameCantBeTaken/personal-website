@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
+﻿using System.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace GitIntegration.Resolvers
 {
-    internal class OptionResolver
+    internal class OptionResolver : IOptionResolver
     {
         private readonly IOptionsSnapshot<GitIntegrationOption> options;
 

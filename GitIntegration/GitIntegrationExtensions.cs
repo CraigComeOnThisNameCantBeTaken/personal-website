@@ -1,6 +1,7 @@
 ﻿using System;
 using GitIntegration.GitHub;
 using GitIntegration.OnDemand;
+using GitIntegration.Public;
 using GitIntegration.Resolvers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,11 +28,16 @@ namespace GitIntegration
                 }
             );
 
-            serviceCollection.AddSingleton<OptionResolver>();
+            // resolvers for internal work
+            serviceCollection.AddSingleton<IOptionResolver, OptionResolver>();
             serviceCollection.AddSingleton<IntegratorResolver>();
 
+            // git provider integration services
             serviceCollection.AddSingleton<IGitIntegrator, GitHubIntegrator>();
-            serviceCollection.AddSingleton<IntegrationAggregator>();
+            serviceCollection.AddSingleton<IGitIntegrator, IntegrationAggregator>();
+
+            // service for use external to the project
+            serviceCollection.AddSingleton<IGitIntegrationService, GitIntegrationService>();
 
             return serviceCollection;
         }

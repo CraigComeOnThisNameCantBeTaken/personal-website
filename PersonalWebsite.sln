@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitIntegration", "GitIntegration\GitIntegration.csproj", "{4FD96A2C-52D2-4486-8967-164DF80C4170}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitIntegration.Test", "GitIntegration.Test\GitIntegration.Test.csproj", "{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitIntegration.Tests", "GitIntegration.Test\GitIntegration.Tests.csproj", "{B0EBFAA0-415C-4A66-B588-3F1DC1E485B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

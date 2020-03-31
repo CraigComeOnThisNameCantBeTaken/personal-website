@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Text;
 using GitIntegration.GitHub;
 using GitIntegration.OnDemand;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,15 +15,19 @@ namespace GitIntegration.Resolvers
             this.provider = provider;
         }
 
-        public IGitIntegrator Resolve(string providerName)
+        public IGitIntegrator Resolve<T>(T typeToProvide = null) where T : Type
         {
-            switch (providerName)
+            if(typeToProvide == null)
             {
-                case SupportedIntegrations.GitHub:
-                    return provider.GetRequiredService<GitHubIntegrator>();
-                default:
-                    throw new ConfigurationErrorsException($"Cannot resolve an integration service for {providerName}");
+                return provider.GetRequiredService<IGitIntegrator>();
             }
+
+            return provider.GetRequiredService(typeof(T)) as IGitIntegrator;
+        }
+
+        public IGitIntegrator Resolve()
+        {
+            return provider.GetRequiredService<IntegrationAggregator>();
         }
     }
 }
