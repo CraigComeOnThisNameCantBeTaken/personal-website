@@ -50,7 +50,7 @@ namespace DataAccess.Repositories
                     String.Join(", ", data.Select(d => d.Id.ToString()))
                 );
             }
-            catch
+            catch(Exception e)
             {
                 logger.LogError(
                     "Failed to add new " + typeof(T).Name + "s with ids: {IDS}",

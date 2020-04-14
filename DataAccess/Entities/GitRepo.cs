@@ -25,11 +25,6 @@ namespace DataAccess.Entities
                 .IsRequired();
 
             builder
-             .Property(gr => gr.Description)
-             .HasMaxLength(200)
-             .IsRequired();
-
-            builder
              .Property(gr => gr.Url)
              .HasMaxLength(100)
              .IsRequired();

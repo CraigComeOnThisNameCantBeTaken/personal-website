@@ -22,7 +22,7 @@ namespace DataAccess.Entities
         {
             builder
              .Property(b => b.Message)
-             .HasMaxLength(200)
+             .HasMaxLength(1000)
              .IsRequired();
 
             builder

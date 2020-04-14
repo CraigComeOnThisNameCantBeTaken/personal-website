@@ -39,6 +39,11 @@ namespace GitIntegration.GitHub
 
         private async Task<IEnumerable<GitRepo>> GetBasicRepoDataAsync()
         {
+            if(!client.DefaultRequestHeaders.UserAgent.TryParseAdd(option.UserName))
+            {
+                throw new Exception("Unable to add GitHub account username as user agent");
+            }
+
             var response = await client.GetAsync($"{option.Endpoint}/users/{option.UserName}/repos");
             if (!response.IsSuccessStatusCode)
             {
