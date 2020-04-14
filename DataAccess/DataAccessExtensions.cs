@@ -31,8 +31,8 @@ namespace DataAccess
             });
 
             serviceCollection.AddSingleton<IScopedUnitOfWorkFactory, TransactionScopeUnitOfWorkFactory>();
-            serviceCollection.AddSingleton<IBookRepository, BookRepository>();
-            serviceCollection.AddSingleton<IGitRepoRepository, GitRepoRepository>();
+            serviceCollection.AddScoped<IBookRepository, BookRepository>();
+            serviceCollection.AddScoped<IGitRepoRepository, GitRepoRepository>();
 
             return serviceCollection;
         }

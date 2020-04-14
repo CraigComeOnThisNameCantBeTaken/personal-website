@@ -17,10 +17,10 @@ namespace GitIntegration.GitHub
         private readonly HttpClient client;
 
         public GitHubIntegrator(
-            HttpClient httpClient,
+            IHttpClientFactory httpClientFactory,
             IOptionResolver optionResolver)
         {
-            client = httpClient;
+            client = httpClientFactory.CreateClient();
             option = optionResolver.Resolve(SupportedIntegrations.GitHub);
         }
 

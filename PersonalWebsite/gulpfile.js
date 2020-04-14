@@ -12,10 +12,11 @@ requireDir('./gulp-tasks');
 gulp.task('clean', gulp.series('clean:typescript', 'clean:sass'));
 
 gulp.task('watch', function () {
-    gulp.watch('wwwroot/styles/**/*.scss', gulp.series('sass'));
+    gulp.watch('Styles/*.scss', gulp.series('sass'));
+    gulp.watch('Scripts/*.js', gulp.series('bundle-javascript'));
 });
 
-gulp.task('default', gulp.series('sass'));
+gulp.task('default', gulp.series('sass', 'bundle-javascript'));
 
 //gulp.task('default', ['scripts', 'sass'], function () {
 //    gulp.watch('src/js/**/*.js', ['scripts']);

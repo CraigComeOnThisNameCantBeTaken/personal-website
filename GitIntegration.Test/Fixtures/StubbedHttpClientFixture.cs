@@ -10,11 +10,16 @@ namespace GitIntegration.Tests.Fixtures
     {
         private Mock<FakeMessageHandler> mockedHttpMessageHandler;
         public HttpClient HttpClient;
+        public readonly Mock<IHttpClientFactory> httpClientFactory;
 
         public StubbedHttpClientFixture()
         {
             mockedHttpMessageHandler = new Mock<FakeMessageHandler>() { CallBase = true };
             HttpClient = new HttpClient(mockedHttpMessageHandler.Object);
+            httpClientFactory = new Mock<IHttpClientFactory>();
+            httpClientFactory
+                .Setup(f => f.CreateClient())
+                .Returns(HttpClient);
         }
 
         public StubbedHttpClientFixture WithResponse(string uri, object response, HttpMethod verb)
