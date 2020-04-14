@@ -1,4 +1,5 @@
 ﻿using Domain.Books;
+using Domain.Summaries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Domain
@@ -10,6 +11,8 @@ namespace Domain
         )
         {
             serviceCollection.AddScoped<IBookService, BookService>();
+            serviceCollection.AddTransient<ProfileSummaryService>();
+
             return serviceCollection;
         }
     }

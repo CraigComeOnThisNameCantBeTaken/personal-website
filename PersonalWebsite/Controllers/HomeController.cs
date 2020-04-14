@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Books;
+using Domain.Summaries;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
 
@@ -9,40 +10,23 @@ namespace PersonalWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IBookService bookService;
+        private readonly ProfileSummaryService profileSummaryService;
 
-        public HomeController(IBookService bookService)
+        public HomeController(ProfileSummaryService profileSummaryService)
         {
-            this.bookService = bookService;
+            this.profileSummaryService = profileSummaryService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var books = await bookService.GetBooksAsync();
+            var data = await profileSummaryService.GetProfileSummaryAsync();
             var model = new HomeViewModel
             {
-                BookReviewsNum = books.Count()
+                BookReviewsNum = data.BookReviewsNum,
+                ProjectNum = data.ProjectNum,
+                CommitsNum = data.CommitsNum
             };
-            //using (var unit = unitOfWorkFactory.Create())
-            //{
-            //    var book = new Book
-            //    {
-            //        Name = "a book",
-            //        PurchaseLink = "a purchase link",
-            //        Review = new Review
-            //        {
-            //            LearningRating = 2,
-            //            ReadabilityRating = 3,
-            //            Text = "it was ok"
-            //        }
-            //    };
-            //    await repo.AddAsync(book);
-            //    var read = await repo.GetAsync();
-            //    await unit.CommitAsync();
-            //}
-
-
-
+            
             return View(model);
         }
 
