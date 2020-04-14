@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
-using Domain.Books;
 using Domain.Summaries;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
@@ -26,7 +24,7 @@ namespace PersonalWebsite.Controllers
                 ProjectNum = data.ProjectNum,
                 CommitsNum = data.CommitsNum
             };
-            
+
             return View(model);
         }
 
