@@ -1,11 +1,55 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
+<div class="introduction-content lt">
+
+    <div class="text-center spacing-t-l">
+        <div class="headshot">
+            <img src="~/images/headshot.png" />
+        </div>
+        <div id="introduction-tags" class="spacing-t-s fade-in fade-in delayed-transition">
+            <div>Engineer</div>
+            <div class="vertical-separator"></div>
+            <div>Developer</div>
+            <div class="vertical-separator"></div>
+            <div>Craftsman</div>
+        </div>
+    </div>
+
+    <hr class="horizontal-separator background-light spacing-t-m" />
+
+    <div id="introduction-stats" class="spacing-t-m">
+        <div class="valued-label spacing-b-m">
+            <div class="background-dark" data-final-value="@Model.ProjectNum">0</div> Public Projects
+        </div>
+
+        <div class="valued-label spacing-b-m">
+            <div class="background-dark" data-final-value="@Model.CommitsNum">0</div> Public Commits
+        </div>
+
+        <div class="valued-label spacing-b-m">
+            <div class="background-dark" data-final-value="@Model.BookReviewsNum">0</div> Book Reviews
+        </div>
+    </div>
+</div>
+
+@*<div class="spacing-t-m background-light dark">
+    TWITTER FEED HERE
+</div>*@
+
 @section Scripts {
     <script>
+        $(".valued-label > .background-dark").each(function (index, ele) {
+            var highestNum = $(ele).data("final-value");
 
-        sayHello();
-
+            for (let i = 0; i < highestNum; i++) {
+                setTimeout(() => {
+                    $(ele).text(i + 1);
+                },
+                    75 * i);
+            }
+        });
     </script>
 }

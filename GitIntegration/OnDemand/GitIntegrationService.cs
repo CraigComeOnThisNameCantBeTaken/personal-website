@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DataAccess.Entities;
-using GitIntegration.OnDemand;
 
-namespace GitIntegration.Public
+namespace GitIntegration.OnDemand
 {
     public class GitIntegrationService : IGitIntegrationService
     {

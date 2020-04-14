@@ -1,7 +1,6 @@
 ﻿using System;
 using GitIntegration.GitHub;
 using GitIntegration.OnDemand;
-using GitIntegration.Public;
 using GitIntegration.Resolvers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,17 +22,20 @@ namespace GitIntegration
 
             serviceCollection.Configure<GitIntegrationOption>(
                 "GitHub",
-                (options) => {
+                (options) =>
+                {
                     configSection.GetSection("GitHub").Bind(options);
                 }
             );
 
             // resolvers for internal work
-            serviceCollection.AddSingleton<IOptionResolver, OptionResolver>();
+            serviceCollection.AddScoped<IOptionResolver, OptionResolver>();
+
+            serviceCollection.AddHttpClient();
 
             // git provider integration services
-            serviceCollection.AddSingleton<GitHubIntegrator>();
-            serviceCollection.AddSingleton<IGitIntegrator>(c =>
+            serviceCollection.AddScoped<GitHubIntegrator>();
+            serviceCollection.AddScoped<IGitIntegrator>(c =>
                 new IntegrationAggregator(
                     new IGitIntegrator[]
                     {
@@ -43,7 +45,7 @@ namespace GitIntegration
             );
 
             // service for use external to the project
-            serviceCollection.AddSingleton<IGitIntegrationService, GitIntegrationService>();
+            serviceCollection.AddScoped<IGitIntegrationService, GitIntegrationService>();
 
             return serviceCollection;
         }

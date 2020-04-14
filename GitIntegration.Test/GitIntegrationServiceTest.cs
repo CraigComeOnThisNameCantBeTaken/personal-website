@@ -2,9 +2,6 @@
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using GitIntegration.OnDemand;
-using GitIntegration.Public;
-using GitIntegration.Resolvers;
-using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using Xunit;
 

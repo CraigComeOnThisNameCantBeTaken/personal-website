@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using DataAccess.Entities;
 
-namespace GitIntegration.Public
+namespace GitIntegration.OnDemand
 {
     public interface IGitIntegrationService
     {

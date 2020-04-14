@@ -1,0 +1,122 @@
+﻿@import 'resets', 'fonts', 'globals', 'variables';
+
+html {
+    font-size: 16px;
+}
+
+body {
+    height: 100vh;
+    font-family: 'montserratregular', Arial;
+    color: $light;
+
+    header {
+        height: 80px;
+        background: $dark;
+        width: 100%;
+        position: fixed;
+        top: 0;
+
+        nav {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            a {
+                margin: 0px 20px;
+                color: $light;
+                text-decoration: none;
+                border-bottom: 4px solid $dark;
+                padding-bottom: 4px;
+                box-sizing: border-box;
+
+                &:hover, &.active {
+                    border-bottom-color: $accent;
+                }
+
+                &:first-child {
+                    margin-left: 0px;
+                    margin-right: auto;
+                    border-bottom: 0;
+
+                    &:hover {
+                        color: $accent;
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 0px;
+                }
+            }
+        }
+    }
+
+    main {
+        padding-top: 80px;
+        background: $accent;
+        height: calc(100vh - 130px);
+        overflow-y: auto;
+
+        // todo: seperate view css and move this into home.css
+        .introduction-content {
+            display: flex;
+            flex-direction: column;
+            width: 70%;
+            margin: auto;
+
+            > *:first-child {
+
+                .headshot {
+                    height: 200px;
+                    width: 200px;
+                    margin: auto;
+                    border-radius: 50%;
+                    border: 4px solid $light;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                #introduction-tags {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .vertical-separator {
+                        background: $light;
+                        height: 20px;
+                        margin: 0 10px;
+                    }
+                }
+            }
+
+            #introduction-stats {
+                display: flex;
+
+                .valued-label {
+                    flex: 0 1 49%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    > *:first-child {
+                        margin-right: 30px;
+                        height: 40px;
+                        width: 50px;
+                        text-align: center;
+                        line-height: 40px;
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        height: 50px;
+        background: $light-accent;
+        color: $light;
+    }
+}

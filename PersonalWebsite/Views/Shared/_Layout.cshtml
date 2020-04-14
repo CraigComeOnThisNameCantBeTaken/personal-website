@@ -3,26 +3,33 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Craig Freeman - Software Engineer</title>
+    <title>Craig Freeman - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/styles/main.css" />
     <script src="~/lib/jquery.min.js"></script>
 </head>
 <body>
+    @{
+        var activeControllerName = ViewContext.RouteData.Values["Controller"].ToString();
+    }
+
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="overdiv">
+            @*todo: look into tag helper for setting active*@
+            <a class="xlt standard-transition @(activeControllerName == "Home" ? "active" : "")" asp-controller="Home" asp-action="Index">CRAIG FREEMAN</a>
+            <a class="lt standard-transition @(activeControllerName == "About" ? "active" : "")" asp-controller="About" asp-action="Index">About</a>
+            <a class="lt standard-transition @(activeControllerName == "Projects" ? "active" : "")" asp-controller="Projects" asp-action="Index">Projects</a>
+            <a class="lt standard-transition @(activeControllerName == "Git" ? "active" : "")" asp-controller="Git" asp-action="Index">Git</a>
+            <a class="lt standard-transition @(activeControllerName == "Books" ? "active" : "")" asp-controller="Books" asp-action="Index">Books</a>
+            <a class="lt standard-transition @(activeControllerName == "Contact" ? "active" : "")" asp-controller="Contact" asp-action="Index">Contact</a>
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main role="main">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - PersonalWebsite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer>
+        Copyright Privacy Sitemap
     </footer>
 
     <script src="~/scripts/app.js" asp-append-version="true"></script>

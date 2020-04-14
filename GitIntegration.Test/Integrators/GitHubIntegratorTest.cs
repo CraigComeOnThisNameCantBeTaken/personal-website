@@ -35,7 +35,7 @@ namespace GitIntegration.Tests.Integrators
                     UserName = userName
                 });
 
-            sut = new GitHubIntegrator(httpFixture.HttpClient, optionResolver.Object);
+            sut = new GitHubIntegrator(httpFixture.httpClientFactory, optionResolver.Object);
         }
 
         [Fact]

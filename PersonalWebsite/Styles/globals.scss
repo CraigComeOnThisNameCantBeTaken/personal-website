@@ -1,0 +1,97 @@
+﻿@import 'variables';
+
+.xlt {
+    font-size: 2rem;
+}
+
+.lt {
+    font-size: 1.5rem;
+}
+
+.mt {
+    font-size: 1rem;
+}
+
+.st {
+    font-size: 0.75rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.horizontal-separator {
+    height: 4px;
+}
+
+.vertical-separator {
+    width: 4px;
+}
+
+.overdiv {
+    width: 1000px;
+    margin: auto;
+}
+
+.standard-transition {
+    transition: all 0.2s ease 0s;
+}
+
+.medium-transition {
+    transition: all 0.5s ease 0s;
+}
+
+.spacing-t-l {
+    margin-top: 40px;
+}
+
+.spacing-t-m {
+    margin-top: 20px;
+}
+
+.spacing-t-s {
+    margin-top: 10px;
+}
+
+.spacing-b-m {
+    margin-bottom: 20px;
+}
+
+.accent {
+    color: $accent;
+}
+
+.background-accent {
+    background: $accent;
+}
+
+.dark {
+    color: $dark;
+}
+
+.background-dark {
+    background: $dark;
+}
+
+.light {
+    color: $light;
+}
+
+.background-light {
+    background: $light;
+}
+
+.padding-20 {
+    padding: 20px;
+}
+
+.fade-in {
+    @extend .medium-transition;
+    opacity: 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .overdiv {
+        width: 100%;
+    }
+}

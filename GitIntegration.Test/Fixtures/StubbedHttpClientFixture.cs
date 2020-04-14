@@ -6,15 +6,32 @@ using Newtonsoft.Json;
 
 namespace GitIntegration.Tests.Fixtures
 {
+    public class StubbedHttpClientFactory : IHttpClientFactory
+    {
+        private readonly HttpClient client;
+
+        public StubbedHttpClientFactory(HttpClient client)
+        {
+            this.client = client;
+        }
+
+        public HttpClient CreateClient(string name)
+        {
+            return client;
+        }
+    }
+
     public class StubbedHttpClientFixture
     {
         private Mock<FakeMessageHandler> mockedHttpMessageHandler;
         public HttpClient HttpClient;
+        public readonly IHttpClientFactory httpClientFactory;
 
         public StubbedHttpClientFixture()
         {
             mockedHttpMessageHandler = new Mock<FakeMessageHandler>() { CallBase = true };
             HttpClient = new HttpClient(mockedHttpMessageHandler.Object);
+            httpClientFactory = new StubbedHttpClientFactory(HttpClient);
         }
 
         public StubbedHttpClientFixture WithResponse(string uri, object response, HttpMethod verb)

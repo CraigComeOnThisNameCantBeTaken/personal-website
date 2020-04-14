@@ -1,41 +1,31 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using DataAccess.Entities;
-using DataAccess.Repositories;
-using DataAccess.UnitOfWork;
+using Domain.Summaries;
 using Microsoft.AspNetCore.Mvc;
-using PersonalWebsite.Models;
+using WebApp.Models;
 
 namespace PersonalWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly ProfileSummaryService profileSummaryService;
+
+        public HomeController(ProfileSummaryService profileSummaryService)
         {
+            this.profileSummaryService = profileSummaryService;
         }
 
         public async Task<IActionResult> Index()
         {
-            //using (var unit = unitOfWorkFactory.Create())
-            //{
-            //    var book = new Book
-            //    {
-            //        Name = "a book",
-            //        PurchaseLink = "a purchase link",
-            //        Review = new Review
-            //        {
-            //            LearningRating = 2,
-            //            ReadabilityRating = 3,
-            //            Text = "it was ok"
-            //        }
-            //    };
-            //    await repo.AddAsync(book);
-            //    var read = await repo.GetAsync();
-            //    await unit.CommitAsync();
-            //}
+            var data = await profileSummaryService.GetProfileSummaryAsync();
+            var model = new HomeViewModel
+            {
+                BookReviewsNum = data.BookReviewsNum,
+                ProjectNum = data.ProjectNum,
+                CommitsNum = data.CommitsNum
+            };
 
-            return View();
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

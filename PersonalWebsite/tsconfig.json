@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
+    "module": "ES6",
     "noImplicitAny": true,
     "noEmitOnError": true,
-    "removeComments": false,
+    "removeComments": true,
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "lib": [
+      "ES2015",
+      "ES5",
+      "DOM"
+    ]
   },
+  "include": [
+    "./scripts/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "compileOnSave": true
 }
