@@ -5,7 +5,7 @@ using DataAccess.Repositories.Books;
 
 namespace Domain.Books
 {
-    public class BookService
+    public class BookService : IBookService
     {
         private readonly IBookRepository bookRepository;
 
@@ -14,7 +14,7 @@ namespace Domain.Books
             this.bookRepository = bookRepository;
         }
 
-        public async Task<IEnumerable<Summary>> GetBooks()
+        public async Task<IEnumerable<Summary>> GetBooksAsync()
         {
             return await bookRepository.GetAsync();
         }

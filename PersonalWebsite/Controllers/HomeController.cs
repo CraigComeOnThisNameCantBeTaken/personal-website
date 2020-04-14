@@ -1,22 +1,28 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Entities;
-using DataAccess.Repositories;
-using DataAccess.UnitOfWork;
+using Domain.Books;
 using Microsoft.AspNetCore.Mvc;
-using PersonalWebsite.Models;
+using WebApp.Models;
 
 namespace PersonalWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        public HomeController()
+        private readonly IBookService bookService;
+
+        public HomeController(IBookService bookService)
         {
+            this.bookService = bookService;
         }
 
         public async Task<IActionResult> Index()
         {
+            var books = await bookService.GetBooksAsync();
+            var model = new HomeViewModel
+            {
+                BookReviewsNum = books.Count()
+            };
             //using (var unit = unitOfWorkFactory.Create())
             //{
             //    var book = new Book
@@ -35,7 +41,9 @@ namespace PersonalWebsite.Controllers
             //    await unit.CommitAsync();
             //}
 
-            return View();
+
+
+            return View(model);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

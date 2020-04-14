@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -21,22 +22,22 @@
 
     <div id="introduction-stats" class="spacing-t-m">
         <div class="valued-label spacing-b-m">
-            <div class="background-dark" data-final-value="100">0</div> Public Projects
+            <div class="background-dark" data-final-value="@Model.ProjectNum">0</div> Public Projects
         </div>
 
         <div class="valued-label spacing-b-m">
-            <div class="background-dark" data-final-value="50">0</div> Public Commits
+            <div class="background-dark" data-final-value="@Model.CommitsNum">0</div> Public Commits
         </div>
 
         <div class="valued-label spacing-b-m">
-            <div class="background-dark" data-final-value="10">0</div> Book Reviews
+            <div class="background-dark" data-final-value="@Model.BookReviewsNum">0</div> Book Reviews
         </div>
     </div>
 </div>
 
-<div class="spacing-t-m background-light dark">
+@*<div class="spacing-t-m background-light dark">
     TWITTER FEED HERE
-</div>
+</div>*@
 
 @section Scripts {
     <script>

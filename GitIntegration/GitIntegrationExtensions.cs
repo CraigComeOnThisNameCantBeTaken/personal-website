@@ -1,7 +1,6 @@
 ﻿using System;
 using GitIntegration.GitHub;
 using GitIntegration.OnDemand;
-using GitIntegration.Public;
 using GitIntegration.Resolvers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
